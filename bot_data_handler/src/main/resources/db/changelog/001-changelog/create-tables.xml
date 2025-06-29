@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        logicalFilePath="db/changelog/changelog.xml">
+
+        <changeSet id="create-tables" author="vKvs">
+            <createSequence sequenceName="user_id_seq"
+                            schemaName="shift_bot_schema"
+                            dataType="BIGINT"
+                            startValue="1"
+                            minValue="1"
+                            incrementBy="10"/>
+
+            <createSequence sequenceName="car_id_seq"
+                            schemaName="shift_bot_schema"
+                            dataType="BIGINT"
+                            startValue="1"
+                            minValue="1"
+                            incrementBy="1"/>
+
+            <createSequence sequenceName="shift_id_seq"
+                            schemaName="shift_bot_schema"
+                            dataType="BIGINT"
+                            startValue="1"
+                            minValue="1"
+                            incrementBy="50"/>
+
+            <createTable tableName="users" schemaName="shift_bot_schema">
+                <column name="id" type="BIGINT" defaultValueComputed="nextval('shift_bot_schema.user_id_seq')">
+                    <constraints primaryKey="true" unique="true" nullable="false"/>
+                </column>
+                <column name="chat_id" type="BIGINT">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="user_name" type="VARCHAR(255)"/>
+                <column name="name" type="VARCHAR(255)"/>
+                <column name="lastname" type="VARCHAR(255)"/>
+                <column name="patronymic" type="VARCHAR(255)"/>
+                <column name="role" type="VARCHAR(30)" defaultValue="USER">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="bot_state" type="VARCHAR(50)">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+
+            <createTable tableName="cars" schemaName="shift_bot_schema">
+                <column name="id" type="BIGINT" defaultValueComputed="nextval('shift_bot_schema.car_id_seq')">
+                    <constraints primaryKey="true" unique="true" nullable="false"/>
+                </column>
+                <column name="internal_number" type="VARCHAR(50)">
+                    <constraints unique="true" nullable="false"/>
+                </column>
+                <column name="state_number" type="VARCHAR(20)">
+                    <constraints unique="true" nullable="false"/>
+                </column>
+                <column name="mileage" type="REAL" defaultValue="0">
+                    <constraints nullable="false" checkConstraint="CHECK (mileage &gt;= 0)"/>
+                </column>
+                <column name="fuel_residue" type="REAL">
+                    <constraints nullable="false" checkConstraint="CHECK (fuel_residue &gt;= 0)"/>
+                </column>
+                <column name="ad_blue_percent" type="INT">
+                    <constraints nullable="false" checkConstraint="CHECK (ad_blue_residue &gt;= 0 AND int_value &lt;= 100)"/>
+                </column>
+                <column name="location" type="VARCHAR(255)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="user_id" type="BIGINT">
+                    <constraints unique="true"
+                                 foreignKeyName="car_user_id_fkey"
+                                 references="shift_bot_schema.users (id)"/>
+                </column>
+            </createTable>
+
+            <createTable tableName="shifts" schemaName="shift_bot_schema">
+                <column name="id" type="BIGINT" defaultValueComputed="nextval('shift_bot_schema.shift_id_seq')">
+                    <constraints primaryKey="true" unique="true" nullable="false"/>
+                </column>
+                <column name="user_id" type="BIGINT">
+                    <constraints foreignKeyName="shift_user_id_fkey"
+                                 references="shift_bot_schema.users (id)"/>
+                </column>
+                <column name="car_id" type="BIGINT">
+                    <constraints foreignKeyName="shift_car_id_fkey"
+                                 references="shift_bot_schema.cars (id)"/>
+                </column>
+                <column name="opening_date_time" type="DATETIME">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="opening_location" type="VARCHAR(255)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="closing_date_time" type="DATETIME"/>
+                <column name="closing_location" type="VARCHAR(255)"/>
+                <column name="refueled_fuel" type="REAL">
+                    <constraints checkConstraint="CHECK (fuel_residue &gt;= 0)"/>
+                </column>
+            </createTable>
+        </changeSet>
+</databaseChangeLog>
