@@ -7,11 +7,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>ru.driver_shift_service.bot_data_handler</groupId>
-    <artifactId>bot_data_handler</artifactId>
+    <groupId>ru.driver_shift_service.main</groupId>
+    <artifactId>main</artifactId>
     <packaging>jar</packaging>
 
-    <name>bot_data_handler</name>
+    <name>main</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -45,12 +45,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.telegram</groupId>
-            <artifactId>telegrambots</artifactId>
-            <version>6.7.0</version>
         </dependency>
 
         <dependency>
