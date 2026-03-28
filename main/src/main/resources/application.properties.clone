@@ -1,0 +1,13 @@
+server.port=5095
+
+spring.application.name=main
+
+spring.datasource.drive=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/name_db
+spring.datasource.username=name
+spring.datasource.password=password
+
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show_sql=true
+
+spring.liquibase.change-log=classpath:db/changelog/changelog.xml
