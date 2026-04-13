@@ -1,6 +1,7 @@
 package ru.driver_shift_service.bot.mappers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import ru.driver_shift_service.bot.bot.ChatData;
@@ -10,13 +11,13 @@ import ru.driver_shift_service.bot.bot.update_editor.UpdateEditor;
 
 import java.util.*;
 
+@Component
 @RequiredArgsConstructor
 public class UpdateDataMapper {
     private final List<UpdateEditor> updateEditors;
 
     public UpdateDataDto map(Update update) {
-        if (update == null)
-            throw new NullPointerException();
+        Objects.requireNonNull(update, "update cannot be null");
 
         update = editUpdate(update);
 

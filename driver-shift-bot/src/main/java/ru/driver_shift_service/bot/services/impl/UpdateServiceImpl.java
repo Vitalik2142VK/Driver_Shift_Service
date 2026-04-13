@@ -8,6 +8,8 @@ import ru.driver_shift_service.bot.mappers.UpdateDataMapper;
 import ru.driver_shift_service.bot.services.EventService;
 import ru.driver_shift_service.bot.services.UpdateService;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class UpdateServiceImpl implements UpdateService {
@@ -15,8 +17,7 @@ public class UpdateServiceImpl implements UpdateService {
     private final UpdateDataMapper mapper;
 
     public void handleUpdate(Update update) {
-        if (update == null)
-            throw new NullPointerException();
+        Objects.requireNonNull(update, "update cannot be null");
 
         UpdateDataDto updateDataDto = mapper.map(update);
         eventService.publishUpdateData(updateDataDto);

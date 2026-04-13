@@ -4,11 +4,11 @@ import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.creators.InlineShiftMenuAnswerCreator;
 import ru.driver_shift_service.bot_data_handler.answers.factories.DefaultAnswerFactory;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
 import ru.driver_shift_service.bot_data_handler.components.open_shift.ShiftOpeningStorage;
 import ru.driver_shift_service.bot_data_handler.handlers.buttons.Button;
 import ru.driver_shift_service.bot_data_handler.handlers.buttons.inline_button_menus.OpenShiftMenu;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class NotOpenShiftButton implements Button {
@@ -19,12 +19,12 @@ public class NotOpenShiftButton implements Button {
     }
 
     @Override
-    public boolean isSuitable(String callbackData) {
+    public boolean getCallbackData(String callbackData) {
         return OpenShiftMenu.NO.equals(callbackData);
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         shiftOpeningStorage.removeCarByUserId(user.getId());
 
         Long chatId = user.getChatId();

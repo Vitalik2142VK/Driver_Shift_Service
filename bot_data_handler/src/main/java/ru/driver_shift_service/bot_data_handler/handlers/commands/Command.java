@@ -1,13 +1,11 @@
 package ru.driver_shift_service.bot_data_handler.handlers.commands;
 
-import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 public interface Command {
     String getName();
 
     String getDescription();
 
-    Answer getAnswer(User user, ClassifiedUpdate update);
+    Answer getAnswer(BotDataUser user, ClassifiedUpdate update);
 }

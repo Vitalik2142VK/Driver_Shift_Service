@@ -2,16 +2,16 @@ package ru.driver_shift_service.bot_data_handler.handlers.commands;
 
 import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.components.close_shift.BeginCloseShift;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.components.close_shift.CloseShiftActivator;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class BeginCloseShiftCommand implements Command{
-    private final BeginCloseShift beginCloseShift;
+    private final CloseShiftActivator closeShiftActivator;
 
-    public BeginCloseShiftCommand(BeginCloseShift beginCloseShift) {
-        this.beginCloseShift = beginCloseShift;
+    public BeginCloseShiftCommand(CloseShiftActivator closeShiftActivator) {
+        this.closeShiftActivator = closeShiftActivator;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BeginCloseShiftCommand implements Command{
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
-        return beginCloseShift.getAnswer(user, update);
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
+        return closeShiftActivator.getAnswer(user, update);
     }
 }

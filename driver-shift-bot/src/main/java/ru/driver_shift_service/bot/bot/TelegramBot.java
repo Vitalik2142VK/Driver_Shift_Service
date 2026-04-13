@@ -26,6 +26,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        System.out.println("ChatId" + update.getMessage().getFrom().getId()); //todo remove
+
         updateService.handleUpdate(update);
     }
 

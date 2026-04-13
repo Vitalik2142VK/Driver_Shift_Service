@@ -4,12 +4,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.TextAnswer;
-import ru.driver_shift_service.bot_data_handler.bot.BotState;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.bot_data.BotState;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
 import ru.driver_shift_service.bot_data_handler.dto.CloseShiftDto;
 import ru.driver_shift_service.bot_data_handler.exceptions.NotValidValueForCloseShiftException;
 import ru.driver_shift_service.bot_data_handler.models.Car;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 import ru.driver_shift_service.bot_data_handler.services.CarService;
 import ru.driver_shift_service.bot_data_handler.services.ShiftService;
 import ru.driver_shift_service.bot_data_handler.services.UserService;
@@ -36,7 +36,7 @@ public class CloseShiftText implements Text{
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         Long chatId = update.getChatId();
         String textMessage = update.getTextMessage();
 
@@ -59,7 +59,7 @@ public class CloseShiftText implements Text{
     }
 
     @Transactional
-    public void closeShift(User user, Car car, CloseShiftDto dto) {
+    public void closeShift(BotDataUser user, Car car, CloseShiftDto dto) {
         user.setBotState(BotState.NONE);
 
         shiftService.closeShift(user.getId(), dto);

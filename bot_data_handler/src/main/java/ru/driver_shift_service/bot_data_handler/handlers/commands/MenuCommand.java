@@ -5,8 +5,8 @@ import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.MultipleAnswers;
 import ru.driver_shift_service.bot_data_handler.answers.creators.InlineShiftMenuAnswerCreator;
 import ru.driver_shift_service.bot_data_handler.answers.factories.DefaultAnswerFactory;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class MenuCommand implements Command{
@@ -21,7 +21,7 @@ public class MenuCommand implements Command{
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         MultipleAnswers answers = new MultipleAnswers();
 
         Long chatId = update.getChatId();

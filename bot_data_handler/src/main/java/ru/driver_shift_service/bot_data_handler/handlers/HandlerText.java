@@ -2,11 +2,10 @@ package ru.driver_shift_service.bot_data_handler.handlers;
 
 import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.bot.TelegramType;
+import ru.driver_shift_service.bot_data_handler.bot_data.UpdateType;
 import ru.driver_shift_service.bot_data_handler.exceptions.TelegramBotHandlerException;
 import ru.driver_shift_service.bot_data_handler.handlers.texts.Text;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 import java.util.List;
 
@@ -19,17 +18,17 @@ public class HandlerText implements Handler {
     }
 
     @Override
-    public TelegramType getHandleType() {
-        return TelegramType.TEXT;
+    public UpdateType getHandleType() {
+        return UpdateType.TEXT;
     }
 
     @Override
-    public boolean isSuitable(User user, ClassifiedUpdate update) {
+    public boolean isSuitable(BotDataUser user, ClassifiedUpdate update) {
         return update.hasMessageText();
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         for (var text : texts) {
             if (user.getBotState() == text.getBotState()) {
                 return text.getAnswer(user, update);

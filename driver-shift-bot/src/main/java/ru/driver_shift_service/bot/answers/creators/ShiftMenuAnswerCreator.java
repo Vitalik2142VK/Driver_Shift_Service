@@ -2,8 +2,8 @@ package ru.driver_shift_service.bot.answers.creators;
 
 import ru.driver_shift_service.bot.answers.Answer;
 import ru.driver_shift_service.bot.answers.ButtonMenuAnswer;
-import ru.driver_shift_service.bot.handlers.buttons.button_menus.ButtonMenu;
-import ru.driver_shift_service.bot.handlers.buttons.button_menus.ShiftMenu;
+import ru.driver_shift_service.bot.buttons.button_menus.ButtonMenu;
+import ru.driver_shift_service.bot.buttons.button_menus.ShiftMenu;
 
 
 public class ShiftMenuAnswerCreator implements AnswerCreator {

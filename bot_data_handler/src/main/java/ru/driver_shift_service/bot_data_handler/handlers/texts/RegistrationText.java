@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.creators.ShiftMenuAnswerCreator;
 import ru.driver_shift_service.bot_data_handler.answers.factories.DefaultAnswerFactory;
-import ru.driver_shift_service.bot_data_handler.bot.BotState;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.bot_data.BotState;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
 import ru.driver_shift_service.bot_data_handler.mappers.RegistrationMapper;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 import ru.driver_shift_service.bot_data_handler.services.UserService;
 import ru.driver_shift_service.bot_data_handler.utils.FullName;
 
@@ -25,7 +25,7 @@ public class RegistrationText implements Text{
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         registerUser(user, update.getTextMessage());
 
         String text = "Вы успешно зарегистрированы."; //todo add instructions for use
@@ -34,7 +34,7 @@ public class RegistrationText implements Text{
                 .getAnswer(ShiftMenuAnswerCreator.class);
     }
 
-    private void registerUser(User user, String fullNameText) {
+    private void registerUser(BotDataUser user, String fullNameText) {
         RegistrationMapper mapper = new RegistrationMapper();
         FullName fullName = mapper.convertStringToFullName(fullNameText);
 

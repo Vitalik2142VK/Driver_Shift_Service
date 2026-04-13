@@ -7,6 +7,8 @@ import ru.driver_shift_service.bot.dto.UpdateDataDto;
 import ru.driver_shift_service.bot.configs.RabbitConfig;
 import ru.driver_shift_service.bot.services.EventService;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class RabbitEventService implements EventService {
@@ -15,8 +17,7 @@ public class RabbitEventService implements EventService {
 
     @Override
     public void publishUpdateData(UpdateDataDto updateDataDto) {
-        if (updateDataDto == null)
-            throw new NullPointerException();
+        Objects.requireNonNull(updateDataDto, "updateDataDto cannot be null");
 
         template.convertAndSend(config.getTextMessageUpdateQueueName(), updateDataDto);
     }

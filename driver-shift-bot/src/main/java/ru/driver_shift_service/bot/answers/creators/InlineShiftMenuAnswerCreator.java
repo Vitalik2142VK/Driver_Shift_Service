@@ -2,8 +2,8 @@ package ru.driver_shift_service.bot.answers.creators;
 
 import ru.driver_shift_service.bot.answers.Answer;
 import ru.driver_shift_service.bot.answers.ButtonMenuAnswer;
-import ru.driver_shift_service.bot.handlers.buttons.inline_button_menus.InlineButtonMenu;
-import ru.driver_shift_service.bot.handlers.buttons.inline_button_menus.InlineShiftMenu;
+import ru.driver_shift_service.bot.buttons.inline_button_menus.InlineButtonMenu;
+import ru.driver_shift_service.bot.buttons.inline_button_menus.InlineShiftMenu;
 
 public class InlineShiftMenuAnswerCreator implements AnswerCreator {
     private final Long chatId;

@@ -2,16 +2,16 @@ package ru.driver_shift_service.bot_data_handler.handlers.commands;
 
 import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.components.open_shift.BeginOpenShift;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.components.open_shift.OpenShiftActivator;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class BeginOpenShiftCommand implements Command{
-    private final BeginOpenShift beginOpenShift;
+    private final OpenShiftActivator openShiftActivator;
 
-    public BeginOpenShiftCommand(BeginOpenShift beginOpenShift) {
-        this.beginOpenShift = beginOpenShift;
+    public BeginOpenShiftCommand(OpenShiftActivator openShiftActivator) {
+        this.openShiftActivator = openShiftActivator;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BeginOpenShiftCommand implements Command{
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
-        return beginOpenShift.getAnswer(user, update);
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
+        return openShiftActivator.getAnswer(user, update);
     }
 }

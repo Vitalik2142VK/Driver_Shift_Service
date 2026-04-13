@@ -1,11 +1,9 @@
 package ru.driver_shift_service.bot_data_handler.handlers.buttons;
 
-import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
 
 public interface Button {
-    boolean isSuitable(String callbackData);
+    String getCallbackData();
 
-    Answer getAnswer(User user, ClassifiedUpdate update);
+    void execute(UpdateData updateData);
 }

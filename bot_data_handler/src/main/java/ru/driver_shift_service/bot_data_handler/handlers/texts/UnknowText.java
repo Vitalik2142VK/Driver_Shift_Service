@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.creators.ShiftMenuAnswerCreator;
 import ru.driver_shift_service.bot_data_handler.answers.factories.DefaultAnswerFactory;
-import ru.driver_shift_service.bot_data_handler.bot.BotState;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.bot_data.BotState;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
 import ru.driver_shift_service.bot_data_handler.handlers.commands.CommandStorage;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class UnknowText implements Text{
@@ -23,7 +23,7 @@ public class UnknowText implements Text{
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         String commands = commandStorage.getCommandsDescriptions();
         String text = "Не существующий запрос или команда!" +
                 "\nСписок возможных команд:\n\n" +

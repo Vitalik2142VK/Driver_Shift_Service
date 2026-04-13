@@ -1,7 +1,7 @@
 package ru.driver_shift_service.bot.bot.update_editor;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.driver_shift_service.bot.handlers.buttons.button_menus.ShiftMenu;
+import ru.driver_shift_service.bot.buttons.button_menus.ShiftMenu;
 
 import java.util.HashMap;
 import java.util.Map;

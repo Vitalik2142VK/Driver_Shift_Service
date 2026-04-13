@@ -5,12 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.TextAnswer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.bot.TelegramType;
+import ru.driver_shift_service.bot_data_handler.bot_data.UpdateType;
 import ru.driver_shift_service.bot_data_handler.exceptions.NotFoundCommandException;
 import ru.driver_shift_service.bot_data_handler.handlers.commands.Command;
 import ru.driver_shift_service.bot_data_handler.handlers.commands.CommandStorage;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class HandlerCommand implements Handler{
@@ -23,17 +22,17 @@ public class HandlerCommand implements Handler{
     }
 
     @Override
-    public TelegramType getHandleType() {
-        return TelegramType.COMMAND;
+    public UpdateType getHandleType() {
+        return UpdateType.COMMAND;
     }
 
     @Override
-    public boolean isSuitable(User user, ClassifiedUpdate update) {
+    public boolean isSuitable(BotDataUser user, ClassifiedUpdate update) {
         return update.getCommandName().startsWith("/");
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         String commandName = update.getCommandName();
         Command command;
 

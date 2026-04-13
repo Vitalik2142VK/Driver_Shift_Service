@@ -4,12 +4,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.driver_shift_service.bot_data_handler.answers.Answer;
 import ru.driver_shift_service.bot_data_handler.answers.TextAnswer;
-import ru.driver_shift_service.bot_data_handler.bot.ClassifiedUpdate;
+import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
 import ru.driver_shift_service.bot_data_handler.components.open_shift.ShiftOpeningStorage;
 import ru.driver_shift_service.bot_data_handler.handlers.buttons.Button;
 import ru.driver_shift_service.bot_data_handler.handlers.buttons.inline_button_menus.OpenShiftMenu;
 import ru.driver_shift_service.bot_data_handler.models.Car;
-import ru.driver_shift_service.bot_data_handler.models.User;
+import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 import ru.driver_shift_service.bot_data_handler.services.CarService;
 import ru.driver_shift_service.bot_data_handler.services.ShiftService;
 
@@ -26,12 +26,12 @@ public class OpenShiftButton implements Button {
     }
 
     @Override
-    public boolean isSuitable(String callbackData) {
+    public boolean getCallbackData(String callbackData) {
         return OpenShiftMenu.YES.equals(callbackData);
     }
 
     @Override
-    public Answer getAnswer(User user, ClassifiedUpdate update) {
+    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
         Car car = shiftOpeningStorage.pullCarByUserId(user.getId());
 
         openShift(user, car);
@@ -44,7 +44,7 @@ public class OpenShiftButton implements Button {
     }
 
     @Transactional
-    public void openShift(User user, Car car) {
+    public void openShift(BotDataUser user, Car car) {
         shiftService.openShift(user, car);
         carService.subscribeCarToDriver(user, car);
     }

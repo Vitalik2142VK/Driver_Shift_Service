@@ -22,7 +22,9 @@
 		<developer/>
 	</developers>
 	<modules>
-		<module>driver-shift-bot</module>
+<!--		<module>bot_data_handler</module>-->
+<!--		<module>driver-shift-bot</module>-->
+<!--		<module>main-service</module>-->
 	</modules>
 	<scm>
 		<connection/>
