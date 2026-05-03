@@ -1,18 +1,13 @@
 package ru.driver_shift_service.bot_data_handler.handlers.commands;
 
 import org.springframework.stereotype.Component;
-import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.answers.MultipleAnswers;
-import ru.driver_shift_service.bot_data_handler.answers.creators.InlineShiftMenuAnswerCreator;
-import ru.driver_shift_service.bot_data_handler.answers.factories.DefaultAnswerFactory;
-import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
+import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
 
 @Component
 public class MenuCommand implements Command{
     @Override
     public String getName() {
-        return Commands.MENU;
+        return CommandConstants.MENU;
     }
 
     @Override
@@ -21,13 +16,13 @@ public class MenuCommand implements Command{
     }
 
     @Override
-    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
-        MultipleAnswers answers = new MultipleAnswers();
-
-        Long chatId = update.getChatId();
-        String text = "Выберете нужный вам пункт.";
-
-        return new DefaultAnswerFactory(chatId, text)
-                .getAnswer(InlineShiftMenuAnswerCreator.class);
+    public void execute(UpdateData updateData) {
+//        MultipleAnswers answers = new MultipleAnswers();
+//
+//        Long chatId = update.getChatId();
+//        String text = "Выберете нужный вам пункт.";
+//
+//        return new DefaultAnswerFactory(chatId, text)
+//                .getAnswer(InlineShiftMenuAnswerCreator.class);
     }
 }

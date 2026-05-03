@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Configuration
 public class RabbitConfig {
-    @Value("${spring.rabbitmq.queues.answer-message}")
+    @Value("${spring.rabbitmq.queues.bot-answer-message}")
     private String answerMessageQueueName;
 
     @Value("${spring.rabbitmq.queues.shift-data}")

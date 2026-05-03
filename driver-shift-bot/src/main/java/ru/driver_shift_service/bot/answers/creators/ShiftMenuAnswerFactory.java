@@ -6,11 +6,11 @@ import ru.driver_shift_service.bot.buttons.button_menus.ButtonMenu;
 import ru.driver_shift_service.bot.buttons.button_menus.ShiftMenu;
 
 
-public class ShiftMenuAnswerCreator implements AnswerCreator {
+public class ShiftMenuAnswerFactory implements AnswerFactory {
     private final Long chatId;
     private final String text;
 
-    public ShiftMenuAnswerCreator(Long chatId, String text) {
+    public ShiftMenuAnswerFactory(Long chatId, String text) {
         this.chatId = chatId;
         this.text = text;
     }

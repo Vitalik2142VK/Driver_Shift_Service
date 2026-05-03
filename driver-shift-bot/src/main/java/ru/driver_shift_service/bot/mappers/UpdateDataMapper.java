@@ -88,7 +88,7 @@ public class UpdateDataMapper {
             chatId = update.getCallbackQuery().getFrom().getId();
             name = getNameByUser(update.getCallbackQuery().getFrom());
             userName = update.getCallbackQuery().getFrom().getUserName();
-        } else if(telegramType == TelegramType.TEXT) {
+        } else if(telegramType == TelegramType.TEXT || telegramType == TelegramType.COMMAND) {
             chatId = update.getMessage().getFrom().getId();
             name = getNameByUser(update.getMessage().getFrom());
             userName = update.getMessage().getFrom().getUserName();

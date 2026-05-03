@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Configuration
 public class RabbitConfig {
-    @Value("${spring.rabbitmq.queues.text-message-update}")
+    @Value("${spring.rabbitmq.queues.bot-message-update}")
     private String textMessageUpdateQueueName;
 
     @Bean

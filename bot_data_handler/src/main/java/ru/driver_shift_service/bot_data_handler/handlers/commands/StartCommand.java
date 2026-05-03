@@ -1,19 +1,25 @@
 package ru.driver_shift_service.bot_data_handler.handlers.commands;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.answers.TextAnswer;
-import ru.driver_shift_service.bot_data_handler.answers.creators.UnavailableCommandAnswerCreator;
-import ru.driver_shift_service.bot_data_handler.answers.factories.DefaultAnswerFactory;
-import ru.driver_shift_service.bot_data_handler.bot_data.ClassifiedUpdate;
-import ru.driver_shift_service.bot_data_handler.models.Role;
+import ru.driver_shift_service.bot_data_handler.bot_data.BotState;
+import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
+import ru.driver_shift_service.bot_data_handler.dto.answer.AnswerDto;
+import ru.driver_shift_service.bot_data_handler.dto.answer.AnswerType;
+import ru.driver_shift_service.bot_data_handler.dto.answer.BotAnswerDtoBuilder;
 import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
+import ru.driver_shift_service.bot_data_handler.services.BotDataService;
+import ru.driver_shift_service.bot_data_handler.services.EventService;
 
 @Component
+@RequiredArgsConstructor
 public class StartCommand implements Command {
+    private final EventService eventService;
+    private final BotDataService botDataService;
+
     @Override
     public String getName() {
-        return Commands.START;
+        return CommandConstants.START;
     }
 
     @Override
@@ -22,15 +28,22 @@ public class StartCommand implements Command {
     }
 
     @Override
-    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
-        Long chatId = user.getChatId();
+    public void execute(UpdateData updateData) {
+        BotDataUser botDataUser = updateData.getBotDataUser();
+        botDataUser.setBotState(BotState.REGISTRATION);
+        botDataService.saveNewBotDataUser(botDataUser);
 
-        if (user.getRole() != Role.NONE)
-            return new DefaultAnswerFactory(chatId)
-                    .getAnswer(UnavailableCommandAnswerCreator.class);
+        BotAnswerDtoBuilder builder = new BotAnswerDtoBuilder(botDataUser.getChatId());
+        builder
+                .addAnswer(new AnswerDto(
+                        AnswerType.TEXT,
+                        "Для дальнейшей авторизации предоставьте доступ к номеру телефона"
+                ))
+                .addAnswer(new AnswerDto(
+                        AnswerType.BUTTON,
+                        "Предоставить номер телефона"
+                ));
 
-        String text = "Здравствуйте, " + update.getName() +"! Для регистрации введите свое ФИО.";
-
-        return new TextAnswer(chatId, text);
+        eventService.publishBotAnswer(builder.build());
     }
 }

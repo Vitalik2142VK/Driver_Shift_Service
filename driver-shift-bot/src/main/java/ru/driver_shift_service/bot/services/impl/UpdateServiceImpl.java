@@ -20,6 +20,9 @@ public class UpdateServiceImpl implements UpdateService {
         Objects.requireNonNull(update, "update cannot be null");
 
         UpdateDataDto updateDataDto = mapper.map(update);
+
+        System.out.println("chatId = " + updateDataDto.getChatId());
+
         eventService.publishUpdateData(updateDataDto);
     }
 }

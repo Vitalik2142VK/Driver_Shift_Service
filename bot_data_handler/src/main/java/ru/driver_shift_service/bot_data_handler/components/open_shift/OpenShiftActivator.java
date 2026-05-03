@@ -1,12 +1,7 @@
 package ru.driver_shift_service.bot_data_handler.components.open_shift;
 
 import org.springframework.stereotype.Component;
-import ru.driver_shift_service.bot_data_handler.answers.Answer;
-import ru.driver_shift_service.bot_data_handler.answers.ButtonMenuAnswer;
-import ru.driver_shift_service.bot_data_handler.answers.TextAnswer;
 import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
-import ru.driver_shift_service.bot_data_handler.handlers.buttons.inline_button_menus.CarButtonMenu;
-import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 @Component
 public class OpenShiftActivator {

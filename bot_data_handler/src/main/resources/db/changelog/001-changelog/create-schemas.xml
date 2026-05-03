@@ -6,9 +6,9 @@
          https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         logicalFilePath="db/changelog/changelog.xml">
 
-        <changeSet id="create-schemas" author="vKvs">
+        <changeSet id="create-bot-data-schema-schemas" author="vKvs">
             <sql endDelimiter=";">
-                CREATE SCHEMA bot_schema
+                CREATE SCHEMA bot_data_schema
             </sql>
         </changeSet>
 </databaseChangeLog>

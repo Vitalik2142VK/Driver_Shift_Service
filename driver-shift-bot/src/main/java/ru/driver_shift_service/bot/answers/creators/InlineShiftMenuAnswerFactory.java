@@ -5,18 +5,18 @@ import ru.driver_shift_service.bot.answers.ButtonMenuAnswer;
 import ru.driver_shift_service.bot.buttons.inline_button_menus.InlineButtonMenu;
 import ru.driver_shift_service.bot.buttons.inline_button_menus.InlineShiftMenu;
 
-public class InlineShiftMenuAnswerCreator implements AnswerCreator {
+public class InlineShiftMenuAnswerFactory implements AnswerFactory {
     private final Long chatId;
     private final Integer messageId;
     private final String text;
 
-    public InlineShiftMenuAnswerCreator(Long chatId, String text) {
+    public InlineShiftMenuAnswerFactory(Long chatId, String text) {
         this.chatId = chatId;
         this.messageId = null;
         this.text = text;
     }
 
-    public InlineShiftMenuAnswerCreator(Long chatId, Integer messageId, String text) {
+    public InlineShiftMenuAnswerFactory(Long chatId, Integer messageId, String text) {
         this.chatId = chatId;
         this.messageId = messageId;
         this.text = text;

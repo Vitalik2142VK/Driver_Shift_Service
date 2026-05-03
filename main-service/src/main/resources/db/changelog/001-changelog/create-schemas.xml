@@ -6,7 +6,7 @@
          https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         logicalFilePath="db/changelog/changelog.xml">
 
-        <changeSet id="create-schemas" author="vKvs">
+        <changeSet id="create-shift-schemas" author="vKvs">
             <sql endDelimiter=";">
                 CREATE SCHEMA shift_schema
             </sql>

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
 import ru.driver_shift_service.bot_data_handler.bot_data.UpdateType;
 import ru.driver_shift_service.bot_data_handler.exceptions.TypeHandlerException;
-import ru.driver_shift_service.bot_data_handler.exceptions.TelegramBotHandlerException;
 import ru.driver_shift_service.bot_data_handler.handlers.Handler;
 import ru.driver_shift_service.bot_data_handler.services.UpdateDataHandler;
 
@@ -24,7 +23,7 @@ public class UpdateDataHandlerImpl implements UpdateDataHandler {
             if (!sortHandlers.containsKey(updateType)) {
                 sortHandlers.put(updateType, handler);
             } else {
-                throw new TelegramBotHandlerException(updateType.getClass().getSimpleName() + " cannot be repeated.");
+                throw new TypeHandlerException(updateType.getClass().getSimpleName() + " cannot be repeated");
             }
         }
     }
@@ -32,13 +31,12 @@ public class UpdateDataHandlerImpl implements UpdateDataHandler {
     @Override
     public void handle(UpdateData updateData) {
         UpdateType updateType = updateData.getUpdateType();
-        Handler handler = sortHandlers.get(updateType);
 
-        if (handler.getHandleType() == updateType) {
-            handler.handle(updateData);
-        } else {
-            throw new TypeHandlerException("The handler with the '" + updateType.toString()
-                    + "' type is not implemented");
+        if (updateType == null) {
+            throw new NullPointerException("'updateData' cannot be null");
         }
+
+        Handler handler = sortHandlers.get(updateType);
+        handler.handle(updateData);
     }
 }

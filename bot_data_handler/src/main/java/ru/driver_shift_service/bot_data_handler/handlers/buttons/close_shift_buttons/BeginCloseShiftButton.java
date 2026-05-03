@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
 import ru.driver_shift_service.bot_data_handler.components.close_shift.CloseShiftActivator;
 import ru.driver_shift_service.bot_data_handler.handlers.buttons.Button;
-import ru.driver_shift_service.bot_data_handler.handlers.buttons.inline_button_menus.InlineShiftMenu;
 
 @Component
 public class BeginCloseShiftButton implements Button {
@@ -16,7 +15,7 @@ public class BeginCloseShiftButton implements Button {
 
     @Override
     public String getCallbackData() {
-        return InlineShiftMenu.CLOSE_SHIFT;
+        return "1";
     }
 
     @Override

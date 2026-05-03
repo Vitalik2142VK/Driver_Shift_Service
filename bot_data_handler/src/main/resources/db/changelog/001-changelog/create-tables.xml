@@ -6,37 +6,32 @@
          https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         logicalFilePath="db/changelog/changelog.xml">
 
-        <changeSet id="create-tables" author="vKvs">
+        <changeSet id="create-bot-data-tables" author="vKvs">
             <createSequence sequenceName="bot_data_user_id_seq"
-                            schemaName="bot_schema"
+                            schemaName="bot_data_schema"
                             dataType="BIGINT"
                             startValue="1"
                             minValue="1"
                             incrementBy="10"/>
 
-            <createTable tableName="bot_data_user" schemaName="bot_schema">
-                <column name="id" type="BIGINT" defaultValueComputed="nextval('bot_schema.bot_data_user_id_seq')">
+            <createTable tableName="bot_data_user" schemaName="bot_data_schema">
+                <column name="id" type="BIGINT">
                     <constraints primaryKey="true" unique="true" nullable="false"/>
                 </column>
+
                 <column name="user_id" type="BIGINT">
-                    <constraints foreignKeyName="shift_user_id_fkey"
-                                 references="bot_schema.users (id)"/>
+                    <constraints unique="true"/>
                 </column>
-                <column name="car_id" type="BIGINT">
-                    <constraints foreignKeyName="shift_car_id_fkey"
-                                 references="bot_schema.cars (id)"/>
+
+                <column name="chat_id" type="BIGINT">
+                    <constraints unique="true"/>
                 </column>
-                <column name="opening_date_time" type="DATETIME">
-                    <constraints nullable="false"/>
-                </column>
-                <column name="opening_location" type="VARCHAR(255)">
-                    <constraints nullable="false"/>
-                </column>
-                <column name="closing_date_time" type="DATETIME"/>
-                <column name="closing_location" type="VARCHAR(255)"/>
-                <column name="refueled_fuel" type="REAL">
-                    <constraints checkConstraint="CHECK (fuel_residue &gt;= 0)"/>
-                </column>
+
+                <column name="name" type="VARCHAR(255)"/>
+
+                <column name="user_name" type="VARCHAR(255)"/>
+
+                <column name="bot_state" type="VARCHAR(50)"/>
             </createTable>
         </changeSet>
 </databaseChangeLog>

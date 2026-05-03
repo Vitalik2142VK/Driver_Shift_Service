@@ -2,8 +2,6 @@ package ru.driver_shift_service.bot_data_handler.utils;
 
 import ru.driver_shift_service.bot_data_handler.dto.CloseShiftDto;
 import ru.driver_shift_service.bot_data_handler.dto.CloseShiftDtoBuilder;
-import ru.driver_shift_service.bot_data_handler.exceptions.NotValidValueForCloseShiftException;
-import ru.driver_shift_service.bot_data_handler.models.Car;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +13,14 @@ public class CloseShiftDtoConverter {
     public static final String KEY_AD_BLUE_PERCENT = "Остаток AdBlue в процентах";
     public static final String KEY_REFUELED_FUEL = "Заправил топлива";
 
-    public static String getExampleAnswer(Car car) {
-        return car.getInternalNumber() + "\n" +
-                KEY_LOCATION + ": СПб\n" +
-                KEY_MILEAGE + ": " + getTextNumber(car.getMileage()) + "\n" +
-                KEY_RESIDUE + ": " + getTextNumber(car.getFuelResidue()) + "\n" +
-                KEY_AD_BLUE_PERCENT + ": " + car.getAdBluePercent() + "\n" +
-                KEY_REFUELED_FUEL + ": 500";
-    }
+//    public static String getExampleAnswer(Car car) {
+//        return car.getInternalNumber() + "\n" +
+//                KEY_LOCATION + ": СПб\n" +
+//                KEY_MILEAGE + ": " + getTextNumber(car.getMileage()) + "\n" +
+//                KEY_RESIDUE + ": " + getTextNumber(car.getFuelResidue()) + "\n" +
+//                KEY_AD_BLUE_PERCENT + ": " + car.getAdBluePercent() + "\n" +
+//                KEY_REFUELED_FUEL + ": 500";
+//    }
 
     private static String getTextNumber(float number) {
         int integer = (int) number;
@@ -33,7 +31,7 @@ public class CloseShiftDtoConverter {
             return String.valueOf(number);
     }
 
-    public CloseShiftDto convert(String textCloseShift) throws NotValidValueForCloseShiftException {
+    public CloseShiftDto convert(String textCloseShift) {
         if (textCloseShift == null || textCloseShift.isEmpty())
             throw new IllegalArgumentException();
 
@@ -54,7 +52,7 @@ public class CloseShiftDtoConverter {
                 .build();
     }
 
-    private String getLocation(List<String> lines) throws NotValidValueForCloseShiftException {
+    private String getLocation(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
 
@@ -70,10 +68,11 @@ public class CloseShiftDtoConverter {
             }
         }
 
-        throw new NotValidValueForCloseShiftException("Локация не указана.");
+        //todo
+        throw new UnsupportedOperationException();
     }
 
-    private float getMileage(List<String> lines) throws NotValidValueForCloseShiftException {
+    private float getMileage(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
 
@@ -86,11 +85,14 @@ public class CloseShiftDtoConverter {
                 return mileage;
             }
         }
+//
+//        throw new NotValidValueForCloseShiftException("Километраж не указан.");
 
-        throw new NotValidValueForCloseShiftException("Километраж не указан.");
+        //todo
+        throw new UnsupportedOperationException();
     }
 
-    private float getFuelResidue(List<String> lines) throws NotValidValueForCloseShiftException {
+    private float getFuelResidue(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
 
@@ -104,10 +106,13 @@ public class CloseShiftDtoConverter {
             }
         }
 
-        throw new NotValidValueForCloseShiftException("Остаток топлива не указан");
+//        throw new NotValidValueForCloseShiftException("Остаток топлива не указан");
+
+        //todo
+        throw new UnsupportedOperationException();
     }
 
-    private int getAdBluePercent(List<String> lines) throws NotValidValueForCloseShiftException {
+    private int getAdBluePercent(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
 
@@ -121,10 +126,13 @@ public class CloseShiftDtoConverter {
             }
         }
 
-        throw new NotValidValueForCloseShiftException("Остаток AdBlue не указан");
+//        throw new NotValidValueForCloseShiftException("Остаток AdBlue не указан");
+
+        //todo
+        throw new UnsupportedOperationException();
     }
 
-    private float getRefueledFuel(List<String> lines) throws NotValidValueForCloseShiftException {
+    private float getRefueledFuel(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
 
@@ -141,7 +149,7 @@ public class CloseShiftDtoConverter {
         return 0f;
     }
 
-    private String separateNumbers(String line) throws NotValidValueForCloseShiftException {
+    private String separateNumbers(String line) {
         String[] separateString = line.split(":");
 
         if (separateString.length == 2) {
@@ -150,8 +158,11 @@ public class CloseShiftDtoConverter {
             if (!number.isEmpty())
                 return number;
         }
+//
+//        throw new NotValidValueForCloseShiftException("В одной из строк не указанны данные. " +
+//                "Проверьте отправляемое сообщение.\n");
 
-        throw new NotValidValueForCloseShiftException("В одной из строк не указанны данные. " +
-                "Проверьте отправляемое сообщение.\n");
+        //todo
+        throw new UnsupportedOperationException();
     }
 }

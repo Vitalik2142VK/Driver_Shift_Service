@@ -5,12 +5,12 @@ import ru.driver_shift_service.bot.answers.ButtonMenuAnswer;
 import ru.driver_shift_service.bot.buttons.inline_button_menus.InlineButtonMenu;
 import ru.driver_shift_service.bot.buttons.inline_button_menus.OpenShiftMenu;
 
-public class OpenShiftMenuAnswerCreator implements AnswerCreator {
+public class OpenShiftMenuAnswerFactory implements AnswerFactory {
     private final Long chatId;
     private final Integer messageId;
     private final String text;
 
-    public OpenShiftMenuAnswerCreator(Long chatId, Integer messageId, String text) {
+    public OpenShiftMenuAnswerFactory(Long chatId, Integer messageId, String text) {
         this.chatId = chatId;
         this.messageId = messageId;
         this.text = text;

@@ -12,5 +12,5 @@ spring:
     username: ${RABBIT_USERNAME:admin}
     password: ${RABBIT_PASSWORD:password}
     queues:
-      text-message-update: ${RABBIT_TEXT_MESSAGE_UPDATE_QUEUE}
-      answer-message: ${RABBIT_ANSWER_MESSAGE_QUEUE}
+      bot-message-update: ${RABBIT_BOT_MESSAGE_UPDATE_QUEUE}
+      bot-answer-message: ${RABBIT_ANSWER_MESSAGE_QUEUE}

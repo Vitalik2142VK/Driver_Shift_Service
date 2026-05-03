@@ -1,11 +1,9 @@
 package ru.driver_shift_service.bot_data_handler.handlers;
 
 import org.springframework.stereotype.Component;
-import ru.driver_shift_service.bot_data_handler.answers.Answer;
+import ru.driver_shift_service.bot_data_handler.bot_data.UpdateData;
 import ru.driver_shift_service.bot_data_handler.bot_data.UpdateType;
-import ru.driver_shift_service.bot_data_handler.exceptions.TelegramBotHandlerException;
 import ru.driver_shift_service.bot_data_handler.handlers.texts.Text;
-import ru.driver_shift_service.bot_data_handler.models.BotDataUser;
 
 import java.util.List;
 
@@ -23,18 +21,11 @@ public class HandlerText implements Handler {
     }
 
     @Override
-    public boolean isSuitable(BotDataUser user, ClassifiedUpdate update) {
-        return update.hasMessageText();
-    }
-
-    @Override
-    public Answer getAnswer(BotDataUser user, ClassifiedUpdate update) {
+    public void handle(UpdateData updateData) {
         for (var text : texts) {
-            if (user.getBotState() == text.getBotState()) {
-                return text.getAnswer(user, update);
-            }
+//            if (updateData.getBotState() == text.getBotState()) {
+//                return text.getAnswer(user, update);
+//            }
         }
-
-        throw new TelegramBotHandlerException("There is no suitable user bot state");
     }
 }

@@ -6,18 +6,18 @@ import ru.driver_shift_service.bot.answers.ButtonMenuAnswer;
 import ru.driver_shift_service.bot.buttons.inline_button_menus.CloseShiftMenu;
 import ru.driver_shift_service.bot.buttons.inline_button_menus.InlineButtonMenu;
 
-public class CloseShiftMenuAnswerCreator implements AnswerCreator{
+public class CloseShiftMenuAnswerFactory implements AnswerFactory {
     private final Long chatId;
     private final Integer messageId;
     private final String text;
 
-    public CloseShiftMenuAnswerCreator(Long chatId, String text) {
+    public CloseShiftMenuAnswerFactory(Long chatId, String text) {
         this.chatId = chatId;
         this.text = text;
         this.messageId = null;
     }
 
-    public CloseShiftMenuAnswerCreator(Long chatId, Integer messageId, String text) {
+    public CloseShiftMenuAnswerFactory(Long chatId, Integer messageId, String text) {
         this.chatId = chatId;
         this.messageId = messageId;
         this.text = text;

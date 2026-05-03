@@ -1,8 +1,6 @@
 package ru.driver_shift_service.bot_data_handler.utils;
 
 import ru.driver_shift_service.bot_data_handler.dto.CloseShiftDto;
-import ru.driver_shift_service.bot_data_handler.exceptions.NotValidValueForCloseShiftException;
-import ru.driver_shift_service.bot_data_handler.models.Car;
 
 public class CloseShiftValidator {
     private final CloseShiftDto closeShiftDto;
@@ -16,21 +14,21 @@ public class CloseShiftValidator {
         maxPercentValue = 100;
     }
 
-    public CloseShiftDto valid(Car car) throws NotValidValueForCloseShiftException {
-        if (car == null)
-            throw new IllegalArgumentException("Argument 'car' is null");
-
-        if (!isValidMileageCar(car.getMileage()))
-            throw new NotValidValueForCloseShiftException("Указанный километраж меньше текущего.");
-
-        if (!isValidFuelResidueCar())
-            throw new NotValidValueForCloseShiftException("Остаток топлива не может быть меньше 0 (нуля).");
-
-        if (!isValidAdBluePercent())
-            throw new NotValidValueForCloseShiftException("Процент AdBlue должен быть указан целыми числами в диапазоне от 0 (нуля) до " + maxPercentValue + ".");
-
-        if (!isValidRefueledFuelCar())
-            throw new NotValidValueForCloseShiftException("Заправленное топливо не может быть меньше 0 (нуля).");
+    public CloseShiftDto valid(/*Car car*/) {
+//        if (car == null)
+//            throw new IllegalArgumentException("Argument 'car' is null");
+//
+//        if (!isValidMileageCar(car.getMileage()))
+//            throw new NotValidValueForCloseShiftException("Указанный километраж меньше текущего.");
+//
+//        if (!isValidFuelResidueCar())
+//            throw new NotValidValueForCloseShiftException("Остаток топлива не может быть меньше 0 (нуля).");
+//
+//        if (!isValidAdBluePercent())
+//            throw new NotValidValueForCloseShiftException("Процент AdBlue должен быть указан целыми числами в диапазоне от 0 (нуля) до " + maxPercentValue + ".");
+//
+//        if (!isValidRefueledFuelCar())
+//            throw new NotValidValueForCloseShiftException("Заправленное топливо не может быть меньше 0 (нуля).");
 
         return closeShiftDto;
     }

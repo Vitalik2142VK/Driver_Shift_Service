@@ -1,16 +1,16 @@
 package ru.driver_shift_service.bot.answers.creators;
 
-import ru.driver_shift_service.bot.answers.TextMessageStorage;
 import ru.driver_shift_service.bot.answers.Answer;
 import ru.driver_shift_service.bot.answers.TextAnswer;
+import ru.driver_shift_service.bot.answers.TextMessageStorage;
 
-public class ErrorAnswerCreator implements AnswerCreator {
+public class UnavailableCommandAnswerFactory implements AnswerFactory {
     private final Long chatId;
     private final String text;
 
-    public ErrorAnswerCreator(Long chatId) {
+    public UnavailableCommandAnswerFactory(Long chatId) {
         this.chatId = chatId;
-        this.text = TextMessageStorage.ERROR_ANSWER;
+        this.text = TextMessageStorage.UNAVAILABLE_COMMAND;
     }
 
     @Override
